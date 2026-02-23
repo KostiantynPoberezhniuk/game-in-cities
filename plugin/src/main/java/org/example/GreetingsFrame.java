@@ -3,7 +3,7 @@ package org.example;
 
 import javax.swing.*;
 
-public class GreetingsFrame implements FrameInfrastructure {
+class GreetingsFrame implements FrameInfrastructure {
     GameFrame gameFrame = new GameFrame();
     JFrame greetingsFrame = new JFrame("Вітаємо");
     JButton okButton = new JButton("Ok");

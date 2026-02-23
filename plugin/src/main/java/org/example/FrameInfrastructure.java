@@ -1,6 +1,6 @@
 package org.example;
 
-public interface FrameInfrastructure {
+interface FrameInfrastructure {
 
     public void frame();
     public void button();
