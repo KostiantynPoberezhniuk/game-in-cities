@@ -48,15 +48,22 @@ class GameFrame implements FrameInfrastructure {
             boolean exist = dto.CITIES.stream()
                     .anyMatch(city -> city.equalsIgnoreCase(userCity));
 
-            if (exist) {
-                inputTex.setText(userCity);
-            }else if (inputTex.setText(surrender)){
+            if (userCity.equalsIgnoreCase(surrender)) {
+                inputTex.setText("Ти програв");
 
-            }
-            else {
+                javax.swing.Timer timer = new javax.swing.Timer(1500, e2 -> {
+                    gameFrame.dispose();
+                });
+                timer.setRepeats(false);
+                timer.start();
+
+            } else if (exist) {
+                inputTex.setText(userCity);
+            } else {
                 inputTex.setText("Такого міста не існуе");
             }
             textField.setText("");
         });
     }
+
 }
