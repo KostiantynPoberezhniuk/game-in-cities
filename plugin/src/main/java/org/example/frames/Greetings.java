@@ -1,6 +1,6 @@
 package org.example.frames;
 
-import org.example.FrameInfrastructure;
+import org.example.frames.FrameInfrastructure;
 
 import javax.swing.*;
 

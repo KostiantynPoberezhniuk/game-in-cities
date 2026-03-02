@@ -1,15 +1,16 @@
 package org.example.frames;
 
-import org.example.FrameInfrastructure;
-import org.example.Implementation;
-import org.example.dto;
+import org.example.frames.FrameInfrastructure;
+import org.example.GameEngine;
+import org.example.Dto;
 
+import javax.swing.Timer;
 import javax.swing.*;
 import java.awt.*;
 
 class Game implements FrameInfrastructure {
 
-    Implementation impl = new Implementation();
+    GameEngine impl = new GameEngine();
     CompleteGame complete = new CompleteGame();
 
     JFrame frame = new JFrame("Міста");
@@ -19,9 +20,10 @@ class Game implements FrameInfrastructure {
     JTextField textField = new JTextField(10);
     JPanel panel = new JPanel();
 
+
     @Override
     public void frame() {
-        frame.setSize(350, 200);
+        frame.setSize(400, 500); // рамка 400x500 як для мене виглядае не гарно ))
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -48,9 +50,9 @@ class Game implements FrameInfrastructure {
     public void button() {
         actionButton.addActionListener(_ -> {
             String userCity = textField.getText().trim();
-            String surrender = dto.SURRENDER;
+            String surrender = Dto.SURRENDER;
 
-            boolean exist = dto.CITIES.stream()
+            boolean exist = Dto.getCities().stream()
                     .anyMatch(city -> city.equalsIgnoreCase(userCity));
 
             if (userCity.equalsIgnoreCase(surrender)) {
@@ -84,7 +86,7 @@ class Game implements FrameInfrastructure {
 
     public void autoCloseMechanism() {
         actionButton.setEnabled(false);
-        javax.swing.Timer timer = new javax.swing.Timer(2000, _ -> {
+        Timer timer = new Timer(2000, _ -> {
             frame.dispose();
             complete.finalScoreFrame(impl.getUserScore(), impl.getComputerScore());
         });

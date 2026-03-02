@@ -1,12 +1,12 @@
 package org.example;
 
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-public class Implementation {
+public class GameEngine {
 
-    private final List<String> usedCities = new ArrayList<>();
+    private final Set<String> usedCities = new HashSet<>();
     private String lastComputerCity = null;
     private int userScore = 0;
     private int computerScore = 0;
@@ -17,7 +17,7 @@ public class Implementation {
 
         char lastChar = getLastLatter(userCity);
 
-        for (String city : dto.CITIES) {
+        for (String city : Dto.getCities()) {
             String cityLower = city.toLowerCase();
             if (cityLower.charAt(0) == lastChar && !usedCities.contains(cityLower)) {
                 usedCities.add(cityLower);
