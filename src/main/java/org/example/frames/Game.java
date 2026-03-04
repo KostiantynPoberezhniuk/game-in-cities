@@ -1,6 +1,5 @@
 package org.example.frames;
 
-import org.example.frames.FrameInfrastructure;
 import org.example.GameEngine;
 import org.example.Dto;
 
@@ -10,7 +9,7 @@ import java.awt.*;
 
 class Game implements FrameInfrastructure {
 
-    GameEngine impl = new GameEngine();
+    GameEngine gameEngine = new GameEngine();
     CompleteGame complete = new CompleteGame();
 
     JFrame frame = new JFrame("Міста");
@@ -23,7 +22,7 @@ class Game implements FrameInfrastructure {
 
     @Override
     public void frame() {
-        frame.setSize(400, 500); // рамка 400x500 як для мене виглядае не гарно ))
+        frame.setSize(400, 500);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -60,16 +59,16 @@ class Game implements FrameInfrastructure {
                 autoCloseMechanism();
 
             } else if (exist) {
-                if (impl.isCityAlreadyUsed(userCity)) {
+                if (gameEngine.isCityAlreadyUsed(userCity)) {
                     inputText.setText("Це місто вже було!");
-                } else if (!impl.isValidMove(userCity)) {
+                } else if (!gameEngine.isValidMove(userCity)) {
                     char expected = Character.toUpperCase(
-                            impl.getExpectedLatter()
+                            gameEngine.getExpectedLatter()
                     );
                     inputText.setText("Місто має починатися на '" + expected + "'!");
                 } else {
                     inputText.setText(userCity);
-                    String computerCity = impl.computerMove(userCity);
+                    String computerCity = gameEngine.computerMove(userCity);
                     if (computerCity != null) {
                         computerInput.setText("Компютер: " + computerCity);
                     } else {
@@ -88,7 +87,7 @@ class Game implements FrameInfrastructure {
         actionButton.setEnabled(false);
         Timer timer = new Timer(2000, _ -> {
             frame.dispose();
-            complete.finalScoreFrame(impl.getUserScore(), impl.getComputerScore());
+            complete.finalScoreFrame(gameEngine.getUserScore(), gameEngine.getComputerScore());
         });
         timer.setRepeats(false);
         timer.start();

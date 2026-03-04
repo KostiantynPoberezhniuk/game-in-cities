@@ -1,7 +1,5 @@
 package org.example.frames;
 
-import org.example.frames.FrameInfrastructure;
-
 import javax.swing.*;
 
 public class Greetings implements FrameInfrastructure {
