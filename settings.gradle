@@ -7,4 +7,3 @@
  */
 
 rootProject.name = 'game-in-cities'
-include('plugin')
